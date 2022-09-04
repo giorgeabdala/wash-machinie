@@ -1,0 +1,222 @@
+{
+  "interactionModel": {
+    "languageModel": {
+      "invocationName": "controlar maquina lavar",
+      "intents": [
+        {
+          "name": "AMAZON.CancelIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.HelpIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.StopIntent",
+          "samples": []
+        },
+        {
+          "name": "HelloWorldIntent",
+          "slots": [],
+          "samples": [
+            "olá",
+            "como vai você",
+            "diga oi mundo",
+            "diga oi",
+            "oi",
+            "diga olá mundo",
+            "diga olá"
+          ]
+        },
+        {
+          "name": "AMAZON.NavigateHomeIntent",
+          "samples": []
+        },
+        {
+          "name": "PowerOnOff",
+          "slots": [
+            {
+              "name": "OnOff",
+              "type": "typeOnOff"
+            },
+            {
+              "name": "maquina",
+              "type": "typeMaquina"
+            }
+          ],
+          "samples": [
+            "{OnOff} {maquina}",
+            "{OnOff}"
+          ]
+        },
+        {
+          "name": "DoubleRinse",
+          "slots": [
+            {
+              "name": "on",
+              "type": "typeOn"
+            },
+            {
+              "name": "maquina",
+              "type": "typeMaquina"
+            }
+          ],
+          "samples": [
+            "enxaguar novamente {maquina}",
+            "enxaguar novamente",
+            "enxaguar duas vezes",
+            "{on} enxague",
+            "{on} duplo enxague"
+          ]
+        },
+        {
+          "name": "Jump",
+          "slots": [
+            {
+              "name": "avancar",
+              "type": "typeAvancar"
+            },
+            {
+              "name": "maquina",
+              "type": "typeMaquina"
+            }
+          ],
+          "samples": [
+            "{avancar} {maquina}",
+            "{avancar}"
+          ]
+        },
+        {
+          "name": "TurboDrying",
+          "slots": [
+            {
+              "name": "on",
+              "type": "typeOn"
+            },
+            {
+              "name": "secagem",
+              "type": "typeSecagem"
+            }
+          ],
+          "samples": [
+            "{secagem}",
+            "{on} {secagem}"
+          ]
+        }
+      ],
+      "types": [
+        {
+          "values": [
+            {
+              "name": {
+                "value": "cancelar"
+              }
+            },
+            {
+              "name": {
+                "value": "parar"
+              }
+            },
+            {
+              "name": {
+                "value": "funcionar"
+              }
+            },
+            {
+              "name": {
+                "value": "desligar"
+              }
+            },
+            {
+              "name": {
+                "value": "ligar"
+              }
+            }
+          ],
+          "name": "typeOnOff"
+        },
+        {
+          "values": [
+            {
+              "name": {
+                "value": "começar"
+              }
+            },
+            {
+              "name": {
+                "value": "iniciar"
+              }
+            },
+            {
+              "name": {
+                "value": "funcionar"
+              }
+            },
+            {
+              "name": {
+                "value": "ligar"
+              }
+            }
+          ],
+          "name": "typeOn"
+        },
+        {
+          "values": [
+            {
+              "name": {
+                "value": "pular",
+                "synonyms": [
+                  "próximo",
+                  "saltar",
+                  "avançar"
+                ]
+              }
+            }
+          ],
+          "name": "typeAvancar"
+        },
+        {
+          "values": [
+            {
+              "name": {
+                "value": "máquina",
+                "synonyms": [
+                  "máquina roupa",
+                  "máquina de roupa",
+                  "máquina de lavar",
+                  "máquina lavar",
+                  "maquina"
+                ]
+              }
+            }
+          ],
+          "name": "typeMaquina"
+        },
+        {
+          "values": [
+            {
+              "name": {
+                "value": "secagem turbo",
+                "synonyms": [
+                  "turbo secagem"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "secagem dupla"
+              }
+            },
+            {
+              "name": {
+                "value": "secagem"
+              }
+            }
+          ],
+          "name": "typeSecagem"
+        }
+      ]
+    }
+  },
+  "version": "3"
+}
