@@ -1,7 +1,7 @@
 {
   "interactionModel": {
     "languageModel": {
-      "invocationName": "controlar maquina lavar",
+      "invocationName": "controlar maquina de lavar",
       "intents": [
         {
           "name": "AMAZON.CancelIntent",
