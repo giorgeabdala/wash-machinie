@@ -76,3 +76,51 @@ describe('Testa o Simple Intent Request. Deve retornar o diálogo  de lançament
     ]);
 });
 
+describe('Testa os Handler standard da Alexa', function () {
+    describe("Testa o Intent Request de Ajuda. Deve retornar o diálogo de ajuda", function () {
+        alexaTest.test([
+            {
+                request: alexaTest.getIntentRequest('AMAZON.HelpIntent'),
+                says: speakOutStandard.HELP_MSG,
+                reprompts: speakOutStandard.HELP_MSG,
+                shouldEndSession: false,
+            },
+        ]);
+    });
+
+    describe("Testa o Intent Request de Cancelar. Deve retornar o diálogo de cancelamento e sair", function () {
+        alexaTest.test([
+            {
+                request: alexaTest.getIntentRequest('AMAZON.CancelIntent'),
+                says: speakOutStandard.GOODBYE_MSG,
+                shouldEndSession: true,
+            },
+        ]);
+    });
+
+    describe("Testa o Intent Request de Parar. Deve retornar o diálogo de cancelament e sair", function () {
+        alexaTest.test([
+            {
+                request: alexaTest.getIntentRequest('AMAZON.StopIntent'),
+                says: speakOutStandard.GOODBYE_MSG,
+                shouldEndSession: true,
+            },
+        ]);
+    });
+
+    describe("Testa o Intent Request de Fallback. Deve retornar o diálogo de não entendido", function () {
+        alexaTest.test([
+            {
+                request: alexaTest.getIntentRequest('AMAZON.FallbackIntent'),
+                says: speakOutStandard.NOT_UNDERSTOOD_MSG,
+                reprompts: speakOutStandard.NOT_UNDERSTOOD_MSG,
+                shouldEndSession: false,
+            },
+        ]);
+    });
+
+
+}
+
+)  ;  //  describe
+
