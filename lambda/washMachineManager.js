@@ -11,7 +11,7 @@ const speakOutLaunch = () => {
     speakOut = speakOut + "Ligar e desligar a máquina, ";
     speakOut = speakOut + "Ligar o Duplo Enxague, ";
     speakOut = speakOut + "Ligar a Secagem turbo, ";
-    speakOut = speakOut + "Pular para a próxima função, ";
+    speakOut = speakOut + "ou pular para a próxima função, ";
     speakOut = speakOut + "O que você gostaria de fazer?";
 
     return speakOut;

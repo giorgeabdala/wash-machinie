@@ -7,7 +7,7 @@ const alexaTest = require('alexa-skill-test-framework');
 
 
 const MSG_LAUNCH_REQUEST = "Olá, eu sou a assistente virtual da sua máquina de lavar. Eu posso...Ligar e desligar " +
-    "a máquina, Ligar o Duplo Enxague, Ligar a Secagem turbo, Pular para a próxima função, O que você gostaria de fazer?"
+    "a máquina, Ligar o Duplo Enxague, Ligar a Secagem turbo, ou pular para a próxima função, O que você gostaria de fazer?"
 
 
 alexaTest.initialize(
