@@ -14,7 +14,7 @@
     "aws-sdk": "^2.326.0",
     "axios": "^0.27.2"
   },
-  "devDependencies": {
-    "mocha": "^10.0.0"
-  }
+ // "devDependencies": {
+ //   "mocha": "^10.0.0"
+ // }
 }
