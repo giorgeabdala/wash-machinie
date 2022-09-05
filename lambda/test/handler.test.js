@@ -47,7 +47,7 @@ describe('Testa o Intent Request de Pular para a próxima função. Deve retorna
 describe('Testa o Intent Request de Ligar a Secagem turbo. Deve retornar OK', function () {
     alexaTest.test([
         {
-            request: alexaTest.getIntentRequest('DryingIntent'),
+            request: alexaTest.getIntentRequest('TurboDryingIntent'),
             says: speakOutStandard.SUCESS_MSG,
             repromptsNothing: false,
             shouldEndSession: false,
@@ -58,7 +58,7 @@ describe('Testa o Intent Request de Ligar a Secagem turbo. Deve retornar OK', fu
 describe('Testa o Intent Request de Ligar o Duplo Enxague. Deve retornar OK', function () {
     alexaTest.test([
         {
-            request: alexaTest.getIntentRequest('RisingIntent'),
+            request: alexaTest.getIntentRequest('DoubleRinseIntent'),
             says: speakOutStandard.SUCESS_MSG,
             shouldEndSession: false,
         },

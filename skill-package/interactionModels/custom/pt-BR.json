@@ -63,6 +63,8 @@
             }
           ],
           "samples": [
+            "enxague duplo",
+            "duplo enxague",
             "enxaguar novamente {maquina}",
             "enxaguar novamente",
             "enxaguar duas vezes",
@@ -100,6 +102,8 @@
             }
           ],
           "samples": [
+            "{secagem} turbo",
+            "turbo {secagem}",
             "{secagem}",
             "{on} {secagem}"
           ]
@@ -199,14 +203,6 @@
         {
           "name": "typeSecagem",
           "values": [
-            {
-              "name": {
-                "value": "secagem turbo",
-                "synonyms": [
-                  "turbo secagem"
-                ]
-              }
-            },
             {
               "name": {
                 "value": "secagem dupla"
