@@ -5,14 +5,9 @@
  * */
 const Alexa = require('ask-sdk-core');
 const WashMachineManager = require('./washMachineManager.js');
+const speakOutStandard = require('./config/SpeakOuts.js');
 
-const speakOutStandard = {
-    HELP_MSG: 'Você pode ligar ou desligar a maquina, ligar o duplo enxague, ligar secagem turbo, pular para a próxima função, ou você pode dizer sair. O que você gostaria de fazer?',
-    GOODBYE_MSG: 'Até mais!',
-    REFLECTOR_MSG: 'Você acabou de chamar {{intentName}}',
-    FALLBACK_MSG: 'Desculpe, não entendi o que você disse. Por favor, tente novamente.',
-    ERROR_MSG: 'Desculpe, estou com problemas para fazer o que você pediu. Por favor, tente novamente.',
-}
+
 
 
 
@@ -22,11 +17,26 @@ const LaunchRequestHandler = {
 
     },
     handle(handlerInput) {
-        const speakOutput = WashMachineManager.speakOutLaunch();
+        const speakOutput = speakOutStandard.LAUNCH_MSG;
 
         return handlerInput.responseBuilder
             .speak(speakOutput)
-            .reprompt(speakOutput)
+            .reprompt(speakOutStandard.SIMPLE_LAUNCH_MSG)
+            .getResponse();
+    }
+};
+
+const SimpleLaunchHandler = {
+    canHandle(handlerInput) {
+        return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
+            && Alexa.getIntentName(handlerInput.requestEnvelope) === 'SimpleLaunchIntent';
+    },
+    handle(handlerInput) {
+        const speakOutput = speakOutStandard.SIMPLE_LAUNCH_MSG;
+
+        return handlerInput.responseBuilder
+            .speak(speakOutput)
+            .reprompt(speakOutStandard.SIMPLE_LAUNCH_MSG)
             .getResponse();
     }
 };
@@ -43,10 +53,11 @@ const OnOffIntentHandler = {
 
         return handlerInput.responseBuilder
             .speak(speakOutput)
-            //.reprompt('add a reprompt if you want to keep the session open for the user to respond')
+            .reprompt(speakOutStandard.REPROMPT_MSG)
             .getResponse();
     }
 };
+
 
 const JumpIntentHandler = {
     canHandle(handlerInput) {
@@ -59,7 +70,7 @@ const JumpIntentHandler = {
 
         return handlerInput.responseBuilder
             .speak(speakOutput)
-            //.reprompt('add a reprompt if you want to keep the session open for the user to respond')
+            .reprompt(speakOutStandard.REPROMPT_MSG)
             .getResponse();
     }
 }
@@ -74,7 +85,7 @@ const DryingIntentHandler = {
 
         return handlerInput.responseBuilder
             .speak(speakOutput)
-            //.reprompt('add a reprompt if you want to keep the session open for the user to respond')
+            .reprompt(speakOutStandard.REPROMPT_MSG)
             .getResponse();
     }
 }
@@ -89,7 +100,7 @@ const RisingIntentHandler = {
 
         return handlerInput.responseBuilder
             .speak(speakOutput)
-            //.reprompt('add a reprompt if you want to keep the session open for the user to respond')
+            .reprompt(speakOutStandard.REPROMPT_MSG)
             .getResponse();
     }
 }
@@ -211,13 +222,13 @@ exports.handler = Alexa.SkillBuilders.custom()
         JumpIntentHandler,
         DryingIntentHandler,
         RisingIntentHandler,
+        SimpleLaunchHandler,
         IntentReflectorHandler
         )
     .addErrorHandlers(
         ErrorHandler)
     .withCustomUserAgent('sample/hello-world/v1.2')
     .lambda();
-
 
 
 

@@ -1,7 +1,7 @@
 {
   "interactionModel": {
     "languageModel": {
-      "invocationName": "controlar maquina de lavar",
+      "invocationName": "controlar máquina de lavar",
       "intents": [
         {
           "name": "AMAZON.CancelIntent",
@@ -45,6 +45,7 @@
             }
           ],
           "samples": [
+            "{OnOff} a {maquina}",
             "{OnOff} {maquina}",
             "{OnOff}"
           ]
@@ -101,6 +102,13 @@
           "samples": [
             "{secagem}",
             "{on} {secagem}"
+          ]
+        },
+        {
+          "name": "SimpleLaunchIntent",
+          "slots": [],
+          "samples": [
+            "sim"
           ]
         }
       ],
@@ -177,6 +185,7 @@
               "name": {
                 "value": "máquina",
                 "synonyms": [
+                  "máquina",
                   "máquina roupa",
                   "máquina de roupa",
                   "máquina de lavar",
