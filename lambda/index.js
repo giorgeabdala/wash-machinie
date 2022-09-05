@@ -78,7 +78,7 @@ const JumpIntentHandler = {
 const DryingIntentHandler = {
     canHandle(handlerInput) {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
-            && Alexa.getIntentName(handlerInput.requestEnvelope) === 'DryingIntent';
+            && Alexa.getIntentName(handlerInput.requestEnvelope) === 'TurboDryingIntent';
     },
     async handle(handlerInput) {
         const speakOutput = await WashMachineManager.drying();
@@ -93,7 +93,7 @@ const DryingIntentHandler = {
 const RisingIntentHandler = {
     canHandle(handlerInput) {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
-            && Alexa.getIntentName(handlerInput.requestEnvelope) === 'RisingIntent';
+            && Alexa.getIntentName(handlerInput.requestEnvelope) === 'DoubleRinseIntent';
     },
     async handle(handlerInput) {
         const speakOutput = await WashMachineManager.rising();
