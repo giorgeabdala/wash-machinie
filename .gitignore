@@ -5,3 +5,5 @@ ask-resources.json
 /lambda/config/monkeyUrl.js
 
 .run/TestRun.run.xml
+
+gitPush.sh
