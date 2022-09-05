@@ -36,7 +36,7 @@ const LaunchRequestHandler = {
 const OnOffIntentHandler = {
     canHandle(handlerInput) {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
-            && Alexa.getIntentName(handlerInput.requestEnvelope) === 'OnOffIntent';
+            && Alexa.getIntentName(handlerInput.requestEnvelope) === 'PowerOnOffIntent';
     },
     async handle(handlerInput) {
         const speakOutput = await WashMachineManager.onOff();

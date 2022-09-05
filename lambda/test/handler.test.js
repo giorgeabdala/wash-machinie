@@ -30,7 +30,7 @@ describe('Testa o Launch Request. Deve retornar o diálogo de lançamento da ski
 describe('Testa o Intent Request de Ligar a máquina. Deve retornar OK', function () {
     alexaTest.test([
         {
-            request: alexaTest.getIntentRequest('OnOffIntent'),
+            request: alexaTest.getIntentRequest('PowerOnOffIntent'),
             says: 'OK',
             repromptsNothing: false,
             shouldEndSession: true,
