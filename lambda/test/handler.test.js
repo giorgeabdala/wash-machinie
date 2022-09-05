@@ -4,11 +4,7 @@ Using the Alexa Skill Test Framework (https://github.com/BrianMacIntosh/alexa-sk
 '.
 */
 const alexaTest = require('alexa-skill-test-framework');
-
-
-const MSG_LAUNCH_REQUEST = "Olá, eu sou a assistente virtual da sua máquina de lavar. Eu posso...Ligar e desligar " +
-    "a máquina, Ligar o Duplo Enxague, Ligar a Secagem turbo, ou pular para a próxima função, O que você gostaria de fazer?"
-
+const speakOutStandard = require('../config/SpeakOuts.js');
 
 alexaTest.initialize(
     require('../index.js'),
@@ -20,8 +16,8 @@ describe('Testa o Launch Request. Deve retornar o diálogo de lançamento da ski
     alexaTest.test([
         {
             request: alexaTest.getLaunchRequest(),
-            says: MSG_LAUNCH_REQUEST,
-            reprompts: MSG_LAUNCH_REQUEST,
+            says: speakOutStandard.LAUNCH_MSG,
+            reprompts: speakOutStandard.SIMPLE_LAUNCH_MSG,
             shouldEndSession: false,
         },
     ]);
@@ -31,9 +27,9 @@ describe('Testa o Intent Request de Ligar a máquina. Deve retornar OK', functio
     alexaTest.test([
         {
             request: alexaTest.getIntentRequest('PowerOnOffIntent'),
-            says: 'OK',
-            repromptsNothing: false,
-            shouldEndSession: true,
+            says: speakOutStandard.SUCESS_MSG,
+            reprompts: speakOutStandard.REPROMPT_MSG,
+            shouldEndSession: false,
         }
     ]);
 });
@@ -42,8 +38,8 @@ describe('Testa o Intent Request de Pular para a próxima função. Deve retorna
     alexaTest.test([
         {
             request: alexaTest.getIntentRequest('JumpIntent'),
-            says: 'OK',
-            shouldEndSession: true,
+            says: speakOutStandard.SUCESS_MSG,
+            shouldEndSession: false,
         },
     ]);
 });
@@ -52,8 +48,9 @@ describe('Testa o Intent Request de Ligar a Secagem turbo. Deve retornar OK', fu
     alexaTest.test([
         {
             request: alexaTest.getIntentRequest('DryingIntent'),
-            says: 'OK',
-            shouldEndSession: true,
+            says: speakOutStandard.SUCESS_MSG,
+            repromptsNothing: false,
+            shouldEndSession: false,
         },
     ]);
 });
@@ -62,8 +59,19 @@ describe('Testa o Intent Request de Ligar o Duplo Enxague. Deve retornar OK', fu
     alexaTest.test([
         {
             request: alexaTest.getIntentRequest('RisingIntent'),
-            says: 'OK',
-            shouldEndSession: true,
+            says: speakOutStandard.SUCESS_MSG,
+            shouldEndSession: false,
+        },
+    ]);
+});
+
+describe('Testa o Simple Intent Request. Deve retornar o diálogo  de lançamento simples  no SpeakOut e no reprompt', function () {
+    alexaTest.test([
+        {
+            request: alexaTest.getIntentRequest('SimpleLaunchIntent'),
+            says: speakOutStandard.SIMPLE_LAUNCH_MSG,
+            reprompts: speakOutStandard.SIMPLE_LAUNCH_MSG,
+            shouldEndSession: false,
         },
     ]);
 });
