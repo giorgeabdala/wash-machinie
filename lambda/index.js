@@ -4,13 +4,25 @@
  * session persistence, api calls, and more.
  * */
 const Alexa = require('ask-sdk-core');
+const WashMachineManager = require('./washMachineManager.js');
+
+const speakOutStandard = {
+    HELP_MSG: 'Você pode ligar ou desligar a maquina, ligar o duplo enxague, ligar secagem turbo, pular para a próxima função, ou você pode dizer sair. O que você gostaria de fazer?',
+    GOODBYE_MSG: 'Até mais!',
+    REFLECTOR_MSG: 'Você acabou de chamar {{intentName}}',
+    FALLBACK_MSG: 'Desculpe, não entendi o que você disse. Por favor, tente novamente.',
+    ERROR_MSG: 'Desculpe, estou com problemas para fazer o que você pediu. Por favor, tente novamente.',
+}
+
+
 
 const LaunchRequestHandler = {
     canHandle(handlerInput) {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'LaunchRequest';
+
     },
     handle(handlerInput) {
-        const speakOutput = 'Welcome, you can say Hello or Help. Which would you like to try?';
+        const speakOutput = WashMachineManager.speakOutLaunch();
 
         return handlerInput.responseBuilder
             .speak(speakOutput)
@@ -19,13 +31,15 @@ const LaunchRequestHandler = {
     }
 };
 
+
+
 const OnOffIntentHandler = {
     canHandle(handlerInput) {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
             && Alexa.getIntentName(handlerInput.requestEnvelope) === 'OnOffIntent';
     },
-    handle(handlerInput) {
-        const speakOutput = 'Hello World!';
+    async handle(handlerInput) {
+        const speakOutput = await WashMachineManager.onOff();
 
         return handlerInput.responseBuilder
             .speak(speakOutput)
@@ -34,13 +48,59 @@ const OnOffIntentHandler = {
     }
 };
 
+const JumpIntentHandler = {
+    canHandle(handlerInput) {
+        return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
+            && Alexa.getIntentName(handlerInput.requestEnvelope) === 'JumpIntent';
+
+    },
+    async handle(handlerInput) {
+        const speakOutput = await  WashMachineManager.jump();
+
+        return handlerInput.responseBuilder
+            .speak(speakOutput)
+            //.reprompt('add a reprompt if you want to keep the session open for the user to respond')
+            .getResponse();
+    }
+}
+
+const DryingIntentHandler = {
+    canHandle(handlerInput) {
+        return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
+            && Alexa.getIntentName(handlerInput.requestEnvelope) === 'DryingIntent';
+    },
+    async handle(handlerInput) {
+        const speakOutput = await WashMachineManager.drying();
+
+        return handlerInput.responseBuilder
+            .speak(speakOutput)
+            //.reprompt('add a reprompt if you want to keep the session open for the user to respond')
+            .getResponse();
+    }
+}
+
+const RisingIntentHandler = {
+    canHandle(handlerInput) {
+        return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
+            && Alexa.getIntentName(handlerInput.requestEnvelope) === 'RisingIntent';
+    },
+    async handle(handlerInput) {
+        const speakOutput = await WashMachineManager.rising();
+
+        return handlerInput.responseBuilder
+            .speak(speakOutput)
+            //.reprompt('add a reprompt if you want to keep the session open for the user to respond')
+            .getResponse();
+    }
+}
+
 const HelpIntentHandler = {
     canHandle(handlerInput) {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
             && Alexa.getIntentName(handlerInput.requestEnvelope) === 'AMAZON.HelpIntent';
     },
     handle(handlerInput) {
-        const speakOutput = 'You can say hello to me! How can I help?';
+        const speakOutput = speakOutStandard.HELP_MSG;
 
         return handlerInput.responseBuilder
             .speak(speakOutput)
@@ -56,7 +116,7 @@ const CancelAndStopIntentHandler = {
                 || Alexa.getIntentName(handlerInput.requestEnvelope) === 'AMAZON.StopIntent');
     },
     handle(handlerInput) {
-        const speakOutput = 'Goodbye!';
+        const speakOutput = speakOutStandard.GOODBYE_MSG;
 
         return handlerInput.responseBuilder
             .speak(speakOutput)
@@ -74,7 +134,7 @@ const FallbackIntentHandler = {
             && Alexa.getIntentName(handlerInput.requestEnvelope) === 'AMAZON.FallbackIntent';
     },
     handle(handlerInput) {
-        const speakOutput = 'Sorry, I don\'t know about that. Please try again.';
+        const speakOutput = speakOutStandard.FALLBACK_MSG;
 
         return handlerInput.responseBuilder
             .speak(speakOutput)
@@ -107,8 +167,7 @@ const IntentReflectorHandler = {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest';
     },
     handle(handlerInput) {
-        const intentName = Alexa.getIntentName(handlerInput.requestEnvelope);
-        const speakOutput = `You just triggered ${intentName}`;
+        const speakOutput = speakOutStandard.FALLBACK_MSG;
 
         return handlerInput.responseBuilder
             .speak(speakOutput)
@@ -126,7 +185,7 @@ const ErrorHandler = {
         return true;
     },
     handle(handlerInput, error) {
-        const speakOutput = 'Sorry, I had trouble doing what you asked. Please try again.';
+        const speakOutput = speakOutStandard.ERROR_MSG;
         console.log(`~~~~ Error handled: ${JSON.stringify(error)}`);
 
         return handlerInput.responseBuilder
@@ -144,13 +203,24 @@ const ErrorHandler = {
 exports.handler = Alexa.SkillBuilders.custom()
     .addRequestHandlers(
         LaunchRequestHandler,
-        HelloWorldIntentHandler,
+        OnOffIntentHandler,
         HelpIntentHandler,
         CancelAndStopIntentHandler,
         FallbackIntentHandler,
         SessionEndedRequestHandler,
-        IntentReflectorHandler)
+        JumpIntentHandler,
+        DryingIntentHandler,
+        RisingIntentHandler,
+        IntentReflectorHandler
+        )
     .addErrorHandlers(
         ErrorHandler)
     .withCustomUserAgent('sample/hello-world/v1.2')
     .lambda();
+
+
+
+
+
+
+

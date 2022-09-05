@@ -1,11 +1,12 @@
 const monkeyUrl = require('./config/monkeyUrl.js');
 const axios = require('axios');
 
+
 const ERROR_MSG_ONOFF = "Desculpe, não consegui acionar o VoiceMonkey. Tente novamente mais tarde.";
 const MSG_SUCESS = "OK";
 
 
-const speakOutLauch = () => {
+const speakOutLaunch = () => {
     let speakOut = "Olá, eu sou a assistente virtual da sua máquina de lavar. Eu posso...";
     speakOut = speakOut + "Ligar e desligar a máquina, ";
     speakOut = speakOut + "Ligar o Duplo Enxague, ";
@@ -30,6 +31,7 @@ const onOff = async () => {
 const jump = async () => {
     try {
         const response = await axios.get(monkeyUrl.jump);
+        console.log(response);
         return MSG_SUCESS;
     }
     catch (error) {
@@ -59,3 +61,5 @@ const rising = async () => {
         return ERROR_MSG_ONOFF;
     }
 }
+
+module.exports = {speakOutLaunch, onOff, jump, drying, rising};

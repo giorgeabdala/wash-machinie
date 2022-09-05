@@ -33,7 +33,7 @@
           "samples": []
         },
         {
-          "name": "PowerOnOff",
+          "name": "PowerOnOffIntent",
           "slots": [
             {
               "name": "OnOff",
@@ -50,7 +50,7 @@
           ]
         },
         {
-          "name": "DoubleRinse",
+          "name": "DoubleRinseIntent",
           "slots": [
             {
               "name": "on",
@@ -70,7 +70,7 @@
           ]
         },
         {
-          "name": "Jump",
+          "name": "JumpIntent",
           "slots": [
             {
               "name": "avancar",
@@ -87,7 +87,7 @@
           ]
         },
         {
-          "name": "TurboDrying",
+          "name": "TurboDryingIntent",
           "slots": [
             {
               "name": "on",
@@ -106,12 +106,8 @@
       ],
       "types": [
         {
+          "name": "typeOnOff",
           "values": [
-            {
-              "name": {
-                "value": "cancelar"
-              }
-            },
             {
               "name": {
                 "value": "parar"
@@ -132,10 +128,10 @@
                 "value": "ligar"
               }
             }
-          ],
-          "name": "typeOnOff"
+          ]
         },
         {
+          "name": "typeOn",
           "values": [
             {
               "name": {
@@ -157,10 +153,10 @@
                 "value": "ligar"
               }
             }
-          ],
-          "name": "typeOn"
+          ]
         },
         {
+          "name": "typeAvancar",
           "values": [
             {
               "name": {
@@ -172,10 +168,10 @@
                 ]
               }
             }
-          ],
-          "name": "typeAvancar"
+          ]
         },
         {
+          "name": "typeMaquina",
           "values": [
             {
               "name": {
@@ -189,10 +185,10 @@
                 ]
               }
             }
-          ],
-          "name": "typeMaquina"
+          ]
         },
         {
+          "name": "typeSecagem",
           "values": [
             {
               "name": {
@@ -212,11 +208,9 @@
                 "value": "secagem"
               }
             }
-          ],
-          "name": "typeSecagem"
+          ]
         }
       ]
     }
-  },
-  "version": "3"
+  }
 }

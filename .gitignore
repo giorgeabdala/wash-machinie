@@ -3,3 +3,5 @@ lambda/node_modules
 ask-resources.json
 .idea/
 /lambda/config/monkeyUrl.js
+
+.run/TestRun.run.xml
